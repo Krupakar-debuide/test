@@ -1,10 +1,152 @@
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
+apiVersion: backstage.io/v1alpha1
+kind: System
+metadata:
+  name: HCHB
+spec:
+  owner: element5
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
+apiVersion: backstage.io/v1alpha1
+kind: System
+annotations:
+    github.com/project-slug: Krupakar-debuide/test
+metadata:
+  name: PALMETTO
+spec:
+  owner: element5
+---
+# https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: test
-  annotations:
-    github.com/project-slug: Krupakar-debuide/test
+  name: RCD
+  description: This are RCD-Workflows
+  tags:
+    - java
+  links:
+  - url: https://github.com/Krupakar-debuide/rcd-workflow
+    title: RCD-Github
+    icon: dashboard
 spec:
-  type: other
-  lifecycle: unknown
-  owner: Tester
+  type: Workflow
+  lifecycle: Live
+  system: HCHB
+  owner: element5
+  dependsOn: [component:Download-patient-reports,component:Upload-documents-to-patient,component:Add-coordination-notes-for-patient,component:Retrieve-Decision-letter-for-patient-billing-period]
+---
+
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Authorization
+  description: This are Authorization-Workflows
+  tags:
+    - nodejs
+  links:
+  - url: https://github.com/Krupakar-debuide/rcd-workflow
+    title: Authorization-Github
+    icon: dashboard
+spec:
+  type: Workflow
+  lifecycle: Live
+  system: PALMETTO
+  owner: element5
+  dependsOn: [component:Submit-Pre-Claim-Review-for-patient-billing-period,component:Retrieve-Decision-letter-for-patient-billing-period,component:Download-patient-reports,component:Upload-documents-to-patient]
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  annotations:
+    backstage.io/techdocs-ref: url:https://github.com/backstage/backstage/tree/master/plugins/techdocs-backend/examples/documented-component
+  name: Download-patient-reports
+  description: Download patient reports - funtionalblock
+  tags:
+    - python
+  links:
+  - url: https://github.com/Krupakar-debuide/functionalBlock-1
+    title: GITHUB
+    icon: dashboard
+spec:
+  type: function block
+  lifecycle: Beta
+  owner: element5
+  system: HCHB
+  # providesApis: [example-http-api]
+  subcomponentOf: RCD
+
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Upload-documents-to-patient
+  description: Upload documents to patient
+  tags:
+    - java
+  links:
+    - url: https://github.com/Krupakar-debuide/functionalBlock-2
+      title: Github
+      icon: dashboard     
+spec:
+  type: function block
+  lifecycle: Beta
+  owner: element5
+  system: HCHB
+  # providesApis: [example-http-api]
+  subcomponentOf: RCD
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Add-coordination-notes-for-patient
+  description: Add coordination notes for patient
+  tags:
+    - nodejs
+  links:
+    - url: https://github.com/Krupakar-debuide/functionalBlock-3
+      title: Github
+      icon: dashboard 
+spec:
+  type: function block
+  lifecycle: Beta
+  owner: element5
+  system: HCHB
+  # providesApis: [example-http-api]
+  subcomponentOf: RCD
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Submit-Pre-Claim-Review-for-patient-billing-period
+  description: Submit Pre-Claim Review for patient billing period
+  tags:
+    - nodejs
+  links:
+    - url: https://github.com/Krupakar-debuide/functionalBlock-3
+      title: GITHUB
+      icon: dashboard 
+spec:
+  type: function block
+  lifecycle: Beta
+  owner: element5
+  system: PALMETTO
+  # providesApis: [example-http-api]
+  subcomponentOf: Authorization
+---
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: Retrieve-Decision-letter-for-patient-billing-period 
+  description:  Retrieve Decision letter for patient billing period
+  tags:
+    - nodejs
+  links:
+    - url: https://github.com/Krupakar-debuide/functionalBlock-3
+      title: GITHUB
+      icon: dashboard 
+spec:
+  type: function block
+  lifecycle: Beta
+  owner: element5
+  system: PALMETTO
+  subcomponentOf: Authorization
