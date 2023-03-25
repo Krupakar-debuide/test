@@ -33,9 +33,7 @@ spec:
   lifecycle: Live
   system: ABC
   owner: krupakar
-  dependsOn: [component:Download,component:Upload,component:Addition,component:Last Block]
 ---
-
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -51,85 +49,4 @@ spec:
   type: Workflow
   lifecycle: Live
   system: BCD
-  owner: element5
-  dependsOn: [component:Submit-Pre-Claim-Review-for-patient-billing-period,component:Retrieve-Decision-letter-for-patient-billing-period,component:Download-patient-reports,component:Upload-documents-to-patient]
----
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  annotations:
-    backstage.io/techdocs-ref: url:https://github.com/backstage/backstage/tree/master/plugins/techdocs-backend/examples/documented-component
-  name: Download
-  description: Download
-  tags:
-    - python
-  links:
-  - url: https://github.com/Krupakar-debuide/functionalBlock-1
-    title: GITHUB
-    icon: dashboard
-spec:
-  type: function block
-  lifecycle: Beta
   owner: krupakar
-  system: ABC
-  # providesApis: [example-http-api]
-  subcomponentOf: BCD
-
----
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: Upload
-  description: Upload
-  tags:
-    - java
-  links:
-    - url: https://github.com/Krupakar-debuide/functionalBlock-2
-      title: Github
-      icon: dashboard     
-spec:
-  type: block
-  lifecycle: Beta
-  owner: krupakar
-  system: BCD
-  # providesApis: [example-http-api]
-  subcomponentOf: XYZ
----
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: Addition
-  description: Add coordinates
-  tags:
-    - nodejs
-  links:
-    - url: https://github.com/Krupakar-debuide/functionalBlock-3
-      title: Github
-      icon: dashboard 
-spec:
-  type: block
-  lifecycle: Beta
-  owner: krupakar
-  system: ABC
-  # providesApis: [example-http-api]
-  subcomponentOf: ABC
----
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: Last Block
-  description: Bottom block
-  tags:
-    - nodejs
-  links:
-    - url: https://github.com/Krupakar-debuide/functionalBlock-3
-      title: GITHUB
-      icon: dashboard 
-spec:
-  type: block
-  lifecycle: Beta
-  owner: krupakar
-  system: PQR
-  # providesApis: [example-http-api]
-  subcomponentOf: BCD
-
