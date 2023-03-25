@@ -2,9 +2,9 @@
 apiVersion: backstage.io/v1alpha1
 kind: System
 metadata:
-  name: HCHB
+  name: ABC
 spec:
-  owner: element5
+  owner: krupakar
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-system
 apiVersion: backstage.io/v1alpha1
@@ -12,45 +12,45 @@ kind: System
 annotations:
     github.com/project-slug: Krupakar-debuide/test
 metadata:
-  name: PALMETTO
+  name: BCD
 spec:
-  owner: element5
+  owner: krupakar
 ---
 # https://backstage.io/docs/features/software-catalog/descriptor-format#kind-component
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: RCD
-  description: This are RCD-Workflows
+  name: DEF
+  description: This are DEF-Blocks
   tags:
     - java
   links:
   - url: https://github.com/Krupakar-debuide/rcd-workflow
-    title: RCD-Github
+    title: DEF-Github
     icon: dashboard
 spec:
-  type: Workflow
+  type: BLock
   lifecycle: Live
-  system: HCHB
-  owner: element5
-  dependsOn: [component:Download-patient-reports,component:Upload-documents-to-patient,component:Add-coordination-notes-for-patient,component:Retrieve-Decision-letter-for-patient-billing-period]
+  system: ABC
+  owner: krupakar
+  dependsOn: [component:Download,component:Upload,component:Addition,component:Last Block]
 ---
 
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: Authorization
-  description: This are Authorization-Workflows
+  name: XYZ
+  description: This are XYZ-Blocks
   tags:
     - nodejs
   links:
-  - url: https://github.com/Krupakar-debuide/rcd-workflow
-    title: Authorization-Github
+  - url: https://krupakarreddy-yasa.medium.com
+    title: Medium-website
     icon: dashboard
 spec:
   type: Workflow
   lifecycle: Live
-  system: PALMETTO
+  system: BCD
   owner: element5
   dependsOn: [component:Submit-Pre-Claim-Review-for-patient-billing-period,component:Retrieve-Decision-letter-for-patient-billing-period,component:Download-patient-reports,component:Upload-documents-to-patient]
 ---
@@ -59,8 +59,8 @@ kind: Component
 metadata:
   annotations:
     backstage.io/techdocs-ref: url:https://github.com/backstage/backstage/tree/master/plugins/techdocs-backend/examples/documented-component
-  name: Download-patient-reports
-  description: Download patient reports - funtionalblock
+  name: Download
+  description: Download
   tags:
     - python
   links:
@@ -70,17 +70,17 @@ metadata:
 spec:
   type: function block
   lifecycle: Beta
-  owner: element5
-  system: HCHB
+  owner: krupakar
+  system: ABC
   # providesApis: [example-http-api]
-  subcomponentOf: RCD
+  subcomponentOf: BCD
 
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: Upload-documents-to-patient
-  description: Upload documents to patient
+  name: Upload
+  description: Upload
   tags:
     - java
   links:
@@ -88,18 +88,18 @@ metadata:
       title: Github
       icon: dashboard     
 spec:
-  type: function block
+  type: block
   lifecycle: Beta
-  owner: element5
-  system: HCHB
+  owner: krupakar
+  system: BCD
   # providesApis: [example-http-api]
-  subcomponentOf: RCD
+  subcomponentOf: XYZ
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: Add-coordination-notes-for-patient
-  description: Add coordination notes for patient
+  name: Addition
+  description: Add coordinates
   tags:
     - nodejs
   links:
@@ -107,18 +107,18 @@ metadata:
       title: Github
       icon: dashboard 
 spec:
-  type: function block
+  type: block
   lifecycle: Beta
-  owner: element5
-  system: HCHB
+  owner: krupakar
+  system: ABC
   # providesApis: [example-http-api]
-  subcomponentOf: RCD
+  subcomponentOf: ABC
 ---
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: Submit-Pre-Claim-Review-for-patient-billing-period
-  description: Submit Pre-Claim Review for patient billing period
+  name: Last Block
+  description: Bottom block
   tags:
     - nodejs
   links:
@@ -126,27 +126,10 @@ metadata:
       title: GITHUB
       icon: dashboard 
 spec:
-  type: function block
+  type: block
   lifecycle: Beta
-  owner: element5
-  system: PALMETTO
+  owner: krupakar
+  system: PQR
   # providesApis: [example-http-api]
-  subcomponentOf: Authorization
----
-apiVersion: backstage.io/v1alpha1
-kind: Component
-metadata:
-  name: Retrieve-Decision-letter-for-patient-billing-period 
-  description:  Retrieve Decision letter for patient billing period
-  tags:
-    - nodejs
-  links:
-    - url: https://github.com/Krupakar-debuide/functionalBlock-3
-      title: GITHUB
-      icon: dashboard 
-spec:
-  type: function block
-  lifecycle: Beta
-  owner: element5
-  system: PALMETTO
-  subcomponentOf: Authorization
+  subcomponentOf: BCD
+
